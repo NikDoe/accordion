@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Item from "./components/Item";
 
 const faqs = [
@@ -24,6 +25,8 @@ export type FAQType = {
 }
 
 const App = function () {
+	const [currOpen, setCurrOpen] = useState<null | number>(null);
+	
 	return (
 		<div className="accordion">
 			{
@@ -33,6 +36,8 @@ const App = function () {
 							key={index}
 							faq={faq}
 							index={index}
+							currOpen={currOpen}
+							setCurrOpen={setCurrOpen}
 						/>
 					)
 				)

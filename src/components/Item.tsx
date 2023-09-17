@@ -1,21 +1,25 @@
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { FAQType } from "../App";
 
 interface ItemProps {
     faq: FAQType;
     index: number;
+    currOpen: number | null;
+    setCurrOpen: Dispatch<SetStateAction<number | null>>
 }
 
 const Item: FC<ItemProps> = function (props) {
 	const {
 		faq,
 		index,
+		currOpen,
+		setCurrOpen
 	} = props;
 
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const isOpen = index === currOpen;
 
 	const handleToggle = () => {
-		setIsOpen(prevState => !prevState);
+		setCurrOpen(isOpen ? null : index);
 	};
 
 	const classNameString = isOpen ? "item open" : "item";
